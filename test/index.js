@@ -95,9 +95,47 @@ describe('io port', function () {
 
         deferred.resolve();
         await r;
-        
+
         completed.should.be.true;
       });
+    });
+  });
+
+  describe('sending', () => {
+
+    async function asyncThrow(fn, ...args) {
+      try {
+        return await fn(...args);
+      } catch (e) {
+        return e;
+      }
+    }
+
+    it('should not allow an empty type', async () => {
+      const err = await asyncThrow(port.send, '', null);
+
+      err
+      .message
+      .should
+      .equal('type must be a non empty string');
+    });
+
+    it('should not allow a null type', async () => {
+      const err = await asyncThrow(port.send, null, null);
+
+      err
+      .message
+      .should
+      .equal('type must be a non empty string');
+    });
+
+    it('should not allow an undefined type', async () => {
+      const err = await asyncThrow(port.send, undefined, null);
+
+      err
+      .message
+      .should
+      .equal('type must be a non empty string');
     });
   });
 });
