@@ -1,6 +1,6 @@
 {
   "name": "easy-io-port",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simple hub for multiple writers / listeners.",
   "author": "Buddhike de Silva",
   "license": "MIT",
